@@ -1,0 +1,28 @@
+.image-list {
+    display: flexbox;
+
+    .image-thumb {
+        width: "25%" !important;
+        margin: 0.5% 0.5% 0.5% 0.5%;
+        border-radius: 5px;
+    }
+    
+    .image-small {
+        width: "50%" !important;
+        margin: 0.5% 0.5% 0.5% 0.5%;
+        border-radius: 5px;
+    }
+    
+    .image-regular {
+        width: "100%" !important;
+        margin: 0.5% 0.5% 0.5% 0.5%;
+        border-radius: 5px;
+    }
+    
+    .image-full {
+        width: "105%" !important;
+        height: "105%" !important;
+        margin: 0.5% 0.5% 0.5% 0.5%;
+        border-radius: 5px;
+    }
+}
