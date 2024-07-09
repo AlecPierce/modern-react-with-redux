@@ -1,17 +1,17 @@
 import { useState } from "react";
 
-function BookCreate({ createBook }) {
+function BookCreate({ onCreate }) {
   const [input, setInput] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
-    createBook(input);
+    onCreate(input);
   };
   const handleChange = (e) => {
     setInput(e.target.value);
   };
   return (
-    <div>
-      <h1>Book Create</h1>
+    <div className="book-create">
+      <h3>Book Create</h3>
       <form onSubmit={handleSubmit}>
         <label>
           Title:
@@ -20,9 +20,12 @@ function BookCreate({ createBook }) {
             name="title"
             value={input}
             onChange={handleChange}
+            className="input"
           />
         </label>
-        <button type="submit">Submit</button>
+        <button type="submit" className="button">
+          Create
+        </button>
       </form>
     </div>
   );

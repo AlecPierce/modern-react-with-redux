@@ -9,28 +9,36 @@ function App() {
   ]);
 
   const createBook = (title) => {
-    const newBook = {
-      id: books.length + 1,
-      title,
-    };
-    setBooks((prevBooks) => [...prevBooks, newBook]);
+    const addedBooks = [
+      ...books,
+      {
+        id: Math.round(Math.random()) * 9999,
+        title,
+      },
+    ];
+    setBooks(addedBooks);
   };
 
   const handleEdit = (id, title) => {
-    setBooks(
-      books.map((book) => {
-        if (book.id === id) {
-          book.title = title;
-        }
-        return book;
-      })
-    );
+    const editedBooks = books.map((book) => {
+      if (book.id === id) {
+        return { ...book, title: title };
+      }
+      return book;
+    });
+    setBooks(editedBooks);
+  };
+
+  const deleteBookById = (id) => {
+    const filteredBooks = books.filter((book) => book.id !== id);
+    setBooks(filteredBooks);
   };
 
   return (
-    <div>
-      <BookCreate createBook={createBook} />
-      <BookList books={books} onEdit={handleEdit} />
+    <div className="app">
+      <h1>Books</h1>
+      <BookCreate onCreate={createBook} />
+      <BookList books={books} onEdit={handleEdit} onDelete={deleteBookById} />
     </div>
   );
 }
