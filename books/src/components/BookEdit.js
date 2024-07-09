@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./BookEdit.css";
 
 function BookEdit({ bookToEdit, onSubmit }) {
   const [input, setInput] = useState(bookToEdit.title);
