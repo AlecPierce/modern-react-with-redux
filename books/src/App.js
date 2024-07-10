@@ -23,17 +23,21 @@ function App() {
     setBooks(addedBooks);
   };
 
-  const handleEdit = (id, title) => {
+  const editBookById = async (id, title) => {
+    const response = await axios.put(`http://localhost:3001/books/${id}`, {
+      title: title,
+    });
     const editedBooks = books.map((book) => {
       if (book.id === id) {
-        return { ...book, title: title };
+        return { ...book, ...response.data };
       }
       return book;
     });
     setBooks(editedBooks);
   };
 
-  const deleteBookById = (id) => {
+  const deleteBookById = async (id) => {
+    await axios.delete(`http://localhost:3001/books/${id}`);
     const filteredBooks = books.filter((book) => book.id !== id);
     setBooks(filteredBooks);
   };
@@ -42,7 +46,7 @@ function App() {
     <div className="app">
       <h1>Books</h1>
       <BookCreate onCreate={createBook} />
-      <BookList books={books} onEdit={handleEdit} onDelete={deleteBookById} />
+      <BookList books={books} onEdit={editBookById} onDelete={deleteBookById} />
     </div>
   );
 }
