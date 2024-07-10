@@ -1,25 +1,25 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BookList from "./components/BookList";
 import BookCreate from "./components/BookCreate";
 import axios from "axios";
 
 function App() {
-  const [books, setBooks] = useState([
-    { id: 1, title: "The Road to React" },
-    { id: 2, title: "The Road to GraphQL" },
-  ]);
+  const [books, setBooks] = useState([]);
+
+  const currentBooks = async () => {
+    const response = await axios.get("http://localhost:3001/books");
+    setBooks(response.data);
+  };
+
+  useEffect(() => {
+    currentBooks();
+  }, []);
 
   const createBook = async (title) => {
     const response = await axios.post("http://localhost:3001/books", {
       title: title,
     });
-    const addedBooks = [
-      ...books,
-      {
-        id: response.data.id,
-        title: response.data.title,
-      },
-    ];
+    const addedBooks = [...books, response.data];
     setBooks(addedBooks);
   };
 
