@@ -1,11 +1,11 @@
 import axios from "axios";
 
-const apiUrl = "http://localhost:3001/api/books";
+const apiUrl = "http://localhost:3001/books";
 
-async function postBook(bookData) {
+async function postBook(title) {
   try {
     const response = await axios.post(`${apiUrl}`, {
-      title: "digimon",
+      title: title,
     });
 
     if (!response.ok) {
