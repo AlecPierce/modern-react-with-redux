@@ -1,6 +1,7 @@
 import { useState } from "react";
 import BookList from "./components/BookList";
 import BookCreate from "./components/BookCreate";
+import { postBook } from "./api";
 
 function App() {
   const [books, setBooks] = useState([
@@ -8,12 +9,14 @@ function App() {
     { id: 2, title: "The Road to GraphQL" },
   ]);
 
-  const createBook = (title) => {
+  const createBook = async (title) => {
+    const response = await postBook({ title: title });
+    console.log(response);
     const addedBooks = [
       ...books,
       {
-        id: Math.round(Math.random()) * 9999,
-        title,
+        id: response.id,
+        title: response.title,
       },
     ];
     setBooks(addedBooks);
