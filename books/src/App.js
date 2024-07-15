@@ -7,7 +7,7 @@ function App() {
   const { currentBooks } = useBooksContext();
   useEffect(() => {
     currentBooks();
-  }, []);
+  }, [currentBooks]);
 
   return (
     <div className="app">
