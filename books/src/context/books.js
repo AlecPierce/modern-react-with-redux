@@ -5,6 +5,7 @@ const BooksContext = createContext();
 
 function Provider({ children }) {
   const [books, setBooks] = useState([]);
+  const [sort, setSort] = useState("asc");
 
   const currentBooks = useCallback(async () => {
     const response = await axios.get("http://localhost:3001/books");
@@ -38,12 +39,32 @@ function Provider({ children }) {
     setBooks(filteredBooks);
   };
 
+  const sortBook = (a, b) => {
+    if (a.title < b.title) {
+      if (sort === "asc") {
+        return -1;
+      } else {
+        return 1;
+      }
+    }
+    if (a.title > b.title) {
+      if (sort === "asc") {
+        return 1;
+      } else {
+        return -1;
+      }
+    }
+    return 0;
+  };
+
   const valueToShare = {
     books,
     currentBooks,
     createBook,
     editBookById,
     deleteBookById,
+    setSort,
+    sortBook,
   };
 
   return (
