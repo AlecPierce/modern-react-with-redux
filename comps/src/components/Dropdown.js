@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { GoChevronDown } from "react-icons/go";
 import Panel from "./Panel";
 
@@ -35,7 +35,7 @@ function Dropdown({ options, value, onChange }) {
   const renderedOptions = options.map((option) => {
     return (
       <div
-        className="hover:bg-sky-100 rounded curser-pointer p-1"
+        className="hover:bg-sky-100 rounded curser-pointer p-1 w-auto h-auto"
         key={option.value}
         onClick={() => handleOptionClick(option)}
       >
@@ -45,7 +45,7 @@ function Dropdown({ options, value, onChange }) {
   });
 
   return (
-    <div ref={divEl} className="w-48 relative">
+    <div ref={divEl} className="relative">
       <Panel
         className="flex justify-between items-center cursor-pointer"
         onClick={handleClick}

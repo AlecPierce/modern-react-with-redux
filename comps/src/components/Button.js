@@ -15,7 +15,7 @@ function Button({
   const classes = twMerge(
     className(
       rest.className,
-      "px-3 py-1.5 mx-8 my-8 border flex items-center",
+      "px-3 py-1.5 mx-4 my-8 border flex items-center",
       {
         "border-blue-600 bg-blue-500 text-white": primary,
         "border-gray-900 bg-gray-800 text-white": secondary,
